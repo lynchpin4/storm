@@ -10,7 +10,7 @@ wallpaper.options = wallpaper.options || {};
 		
 		this.initialize();
 		this.options = {
-			hue_animation : true
+			hue_animation : false
 		};
 		$.extend(this.options, options);
 		$.extend(this.options, wallpaper.options);
@@ -38,9 +38,6 @@ wallpaper.options = wallpaper.options || {};
 		{
 			$('.modular-header').removeClass('has-bg');
 		}
-		
-		// hackery ??
-		if (this.options.hue_animation && !background.background.hasClass('hue-anim-end')) background.background.addClass('hue-anim-end'); 
 	}
 	
 	HomeScreen.prototype.start = function()
@@ -52,28 +49,37 @@ wallpaper.options = wallpaper.options || {};
 	}
 	
 	// should possibly be a function of background?
+	const HUE_ANIM_DIR = 45;
+	const HUE_END_DEG = 360;
+	const HUE_START_DEG = 0;
 	HomeScreen.prototype.update_hue = function(start)
 	{
 		var bg = this.background.background;
 		if (this.options.hue_animation)
 		{
-			if (!bg.hasClass('hue-anim')) bg.addClass('hue-anim');
-			if (bg.hasClass('hue-anim-end'))
+			if (!this.__set_hue_animation)
 			{
-				console.log('hue animation reversing');
-				bg.removeClass('hue-anim-end');
+				this.__set_hue_animation = true;
+				this.__hue_switch = true;
+				bg.css('transition', '-webkit-filter '+HUE_ANIM_DIR+'s ease-in;');
+				bg.css('-webkit-filter', 'hue-rotate('+HUE_START_DEG+'deg)');
+			}
+			this.__hue_switch = !this.__hue_switch;
+			if (this.__hue_switch)
+			{
+				bg.css('-webkit-filter', 'hue-rotate('+HUE_START_DEG+'deg)');
 			}
 			else
 			{
-				console.log('hue animation starting');
-				if (!bg.hasClass('hue-anim-end')) {  bg.addClass('hue-anim-end'); } else { bg.removeClass('hue-anim-end'); } 
+				bg.css('-webkit-filter', 'hue-rotate('+HUE_END_DEG+'deg)');
 			}
-			
-			setTimeout(this.update_hue.bind(this), 50 * 1000);
+			clearTimeout(this.__hue_timeout);
+			this.__hue_timeout = setTimeout(this.update_hue.bind(this), HUE_ANIM_DIR * 1000);
 		}
 		else
 		{
-			if (bg.hasClass('hue-anim')) bg.removeClass('hue-anim hue-anim-end');
+			this.__set_hue_animation = false;
+			bg.css('transition', '');
 		}
 	}
 	

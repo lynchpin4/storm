@@ -7,31 +7,33 @@
 		<!-- ugly link -->
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 		<link href='assets/icomoon/style.css' rel='stylesheet' type='text/css'>
-		<script type="text/javascript" src="js/zepto.js"></script>
+		<script type="text/javascript" src="chemist/zepto.js"></script>
+		<script type="text/javascript" src="chemist/sdk/loader.js"></script>
 		<script type="text/javascript" src="js/homescreen.js"></script>
 		<script type="text/javascript">
-		$(function(){
-			var fs = require('fs');
-			
-			window.homescreen = new Launcher.HomeScreen();
-			homescreen.start();
-			
-			var wallpaper_path = 'assets/wallpaper/highres/',
-				files = fs.readdirSync(wallpaper_path);
-			
-			var wallpapers = [];
-			for (var i=0;i<files.length;i++)
-			{
-				wallpapers.push({
-					wallpaper: wallpaper_path + files[i],
-					hue_animation: (files[i].indexOf("hs") != -1),
-					header_has_bg: (files[i].indexOf("hbg") != -1)
-				});
-			}
-			
-			wallpaper.options = wallpapers[Math.floor(Math.random() * (wallpapers.length))];
-			homescreen.applyOptions();
-		});
+			chemist.events.on('chemist:bootstrap', function() {
+				console.log('app init');
+				var fs = require('fs');
+				
+				window.homescreen = new Launcher.HomeScreen();
+				homescreen.start();
+				
+				var wallpaper_path = 'assets/wallpaper/highres/',
+					files = fs.readdirSync(wallpaper_path);
+				
+				var wallpapers = [];
+				for (var i=0;i<files.length;i++)
+				{
+					wallpapers.push({
+						wallpaper: wallpaper_path + files[i],
+						hue_animation: (files[i].indexOf("hs") != -1),
+						header_has_bg: (files[i].indexOf("hbg") != -1)
+					});
+				}
+				
+				wallpaper.options = wallpapers[Math.floor(Math.random() * (wallpapers.length))];
+				homescreen.applyOptions();
+			});
 		</script>
 	</head>
 	<body>
