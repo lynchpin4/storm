@@ -12,3 +12,9 @@
 {
 	transition: -webkit-filter 50s ease-in;
 }
+
+.container-bottom
+{
+	background: url('approw-bg.png');
+	height: 126px;
+}
