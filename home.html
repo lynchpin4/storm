@@ -2,15 +2,19 @@
 <html>
 	<head>
 		<title>Storm Launcher: Stage</title>
+		<link rel="stylesheet" type="text/css" href="assets/basic.css" />
+		<link rel="stylesheet" type="text/css" href="assets/options.css" />
 		<script type="text/javascript" src="js/zepto.js"></script>
 		<script type="text/javascript" src="js/homescreen.js"></script>
 		<script type="text/javascript">
+		$(function(){
 			window.homescreen = new Launcher.HomeScreen();
 			homescreen.start();
+		});
 		</script>
 	</head>
 	<body>
-		<div id="background" class="background"></div>
+		<div id="background" class="background"><div class="blur"></div></div>
 		<div id="stage" class="stage">
 			<!-- the real deal implementation of this will be considerably more complex later -->
 			<div id="homescreen_clock">
