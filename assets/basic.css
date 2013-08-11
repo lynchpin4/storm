@@ -43,9 +43,14 @@ body { margin: 0; padding: 0; font-family: 'Droid Sans', sans-serif; }
 	top: 0px;
 	left: 0px;
 	width: 100%;
-	background: rgba(50, 50, 50, 0.5);
+	/* background: rgba(50, 50, 50, 0.5); */
 	height: 35px;
 	z-index: 200;
+}
+
+.modular-header.has-bg
+{
+	background: rgba(50, 50, 50, 0.5);
 }
 
 .modular-header .center
@@ -56,15 +61,36 @@ body { margin: 0; padding: 0; font-family: 'Droid Sans', sans-serif; }
 	text-align: center;
 	width: 100px;
 	height: inherit;
-	position: relative;
 	padding-top: 3px;
 }
 
 .modular-header .clock
 {
 	font-size: 24px;
-	color: #f1f1f1;
+	color: #f2f2f2;
+	opacity: 0.8;
 }
+
+.modular-header .right
+{
+	font-size: 24px;
+	color: #f2f2f2;
+	opacity: 0.8;
+	position: absolute;
+	top: 2px;
+	right: 0px;
+	height: inherit;
+}
+
+.taskbar-icon
+{
+	margin-top: 2px;
+	margin-right: 5px;
+	float: right;
+}
+
+.taskbar-icon.con { font-size: 20px; margin-top:4px; }
+.taskbar-icon.music { font-size: 20px; margin-top:4px;}
 
 /*
 .img-glow {

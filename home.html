@@ -6,21 +6,55 @@
 		<link rel="stylesheet" type="text/css" href="assets/options.css" />
 		<!-- ugly link -->
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<link href='assets/icomoon/style.css' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/zepto.js"></script>
 		<script type="text/javascript" src="js/homescreen.js"></script>
 		<script type="text/javascript">
 		$(function(){
+			var fs = require('fs');
+			
 			window.homescreen = new Launcher.HomeScreen();
 			homescreen.start();
+			
+			var wallpaper_path = 'assets/wallpaper/highres/',
+				files = fs.readdirSync(wallpaper_path);
+			
+			var wallpapers = [];
+			for (var i=0;i<files.length;i++)
+			{
+				wallpapers.push({
+					wallpaper: wallpaper_path + files[i],
+					hue_animation: (files[i].indexOf("hs") != -1),
+					header_has_bg: (files[i].indexOf("hbg") != -1)
+				});
+			}
+			
+			wallpaper.options = wallpapers[Math.floor(Math.random() * (wallpapers.length))];
+			homescreen.applyOptions();
 		});
 		</script>
 	</head>
 	<body>
-		<div id="background" class="background"><div class="blur"></div></div>
+		<div id="background" class="background hue-anim"><div class="blur"></div></div>
 		<div id="stage" class="stage">
 			<!-- the real deal implementation of this will be considerably more complex later -->
 			<div id="header_bar" class="modular-header">
 				<div class="center"><span class="clock">XX:XX PM</span></div>
+				<div class="right">
+					<div class="taskbar-icon battery">
+						<i class="icon-battery"></i>
+					</div>
+					<div class="taskbar-icon music">
+						<i class="icon-music-2"></i>
+					</div>
+					<div class="taskbar-icon con">
+						<i class="icon-connection"></i>
+					</div>
+				</div>
+			</div>
+			<div id="pages">
+				<div id="page_search" class="launcher-page"></div>
+				<div id="page_home" class="launcher-page"></div>
 			</div>
 		</div>
 	</body>

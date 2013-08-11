@@ -1,5 +1,14 @@
 #background
 {
-	background-image: url('wallpaper/highres/wallpaper-2980011.jpg');
-	-webkit-filter: hue-rotate(150deg);
+	background-image: url('wallpaper/highres/wallpaper-2984252.jpg');
+}
+
+#background.hue-anim-end
+{
+	-webkit-filter: hue-rotate(360deg);
+}
+
+#background.hue-anim
+{
+	transition: -webkit-filter 50s ease-in;
 }
