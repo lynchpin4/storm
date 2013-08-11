@@ -13,7 +13,7 @@ which you can put somewhere in your path and then simply run:
 how it looks:
 =====
 
-![Screenshot would be here..](/docs/launch.pgn "Stormlooks")
+![Screenshot would be here..](docs/launch.png "Stormlooks")
 	
 chemist
 ====
