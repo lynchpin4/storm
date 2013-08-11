@@ -1,0 +1,13 @@
+{
+  "name": "Storm Launcher",
+  "main": "home.html",
+  "description" : "Storm Launcher Testbench",
+  "version" : "0.9.0.alpha",
+  "window": { 
+     "icon":"",	
+     "toolbar": true,  
+     "position": "center",
+     "width": 480,
+     "height": 800
+  }
+}
