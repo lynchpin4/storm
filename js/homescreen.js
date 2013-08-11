@@ -1,4 +1,5 @@
 var Launcher = {};
+var events = require('events');
 var wallpaper = wallpaper || {};
 wallpaper.options = wallpaper.options || {};
 
@@ -6,6 +7,7 @@ wallpaper.options = wallpaper.options || {};
 	
 	function HomeScreen(options)
 	{
+		$.extend(this, events.EventEmitter.prototype);
 		options = options || {};
 		
 		this.initialize();
@@ -40,12 +42,18 @@ wallpaper.options = wallpaper.options || {};
 		}
 	}
 	
+	HomeScreen.prototype.applySize = function()
+	{
+		$('.launcher-page').css('height', $(window).height()-35);
+	}
+	
 	HomeScreen.prototype.start = function()
 	{
 		console.log('this is the truth');
 		this.background = new Launcher.Background();
 		this.update_clock();
 		this.applyOptions();
+		this.applySize();
 	}
 	
 	// should possibly be a function of background?

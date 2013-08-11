@@ -71,6 +71,74 @@ body { margin: 0; padding: 0; font-family: 'Droid Sans', sans-serif; }
 	opacity: 0.8;
 }
 
+.launcher-page
+{
+	position: fixed;
+}
+
+.launcher-page.offscreen
+{
+	top: -999px;
+	left: -999px;
+}
+
+.launcher-page.selected
+{
+	top: 35px;
+	right: 0px;
+	left: 0px;
+}
+
+.launcher-page .page
+{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.page .iconrow
+{
+	margin: 20px;
+	position: relative;
+	display: inline-block;
+}
+/* todo: less theme engine integration for gutter size config */
+.page .iconrow > *
+{
+	margin-right: 25px;
+	float: left;
+}
+
+.container-bottom
+{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+}
+
+.page .app-button
+{
+	color: #f1f1f1;
+	text-align: center;
+	width: 75px;
+	height: 75px;
+}
+
+.app-button .app-icon
+{
+
+}
+
+.app-button .app-label
+{
+	text-align: middle;
+	text-shadow: 0 0 0 #000;
+	background: rgba(25, 25, 25, 0.5);
+	border-radius: 20px;
+}
+
 .modular-header .right
 {
 	font-size: 24px;
