@@ -122,7 +122,13 @@ wallpaper.options = wallpaper.options || {};
 		pbg.prototype.calcDimensionsDone = function()
 		{
 			console.log(' background image dimensions '+this.background_width+"x"+this.background_height);
-			this.scrollTo(1200);
+			var width = $(window).width();
+			this.scrollTo(width % 5);
+			
+			if (width <= 500 && this.background_width > (500 + width))
+			{
+				this.scrollTo((this.background_width / 2 - 500));
+			}
 		}
 		
 		pbg.prototype.scrollTo = function(x)
