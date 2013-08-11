@@ -10,6 +10,11 @@ which you can put somewhere in your path and then simply run:
 	cd ../
 	nw storm
 	
+how it looks:
+=====
+
+![Screenshot would be here..](/docs/launch.pgn "Stormlooks")
+	
 chemist
 ====
 

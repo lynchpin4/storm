@@ -137,12 +137,14 @@ wallpaper.options = wallpaper.options || {};
 		{
 			console.log(' background image dimensions '+this.background_width+"x"+this.background_height);
 			var width = $(window).width();
-			this.scrollTo(width % 5);
-			
+			// temp
+			if (width >= 499) this.scrollTo(0);
+			if (width <= 499 && this.background_width >= 500) this.scrollTo(100);
+			/*
 			if (width <= 500 && this.background_width > (500 + width))
 			{
 				this.scrollTo((this.background_width / 2 - 500));
-			}
+			}*/
 		}
 		
 		pbg.prototype.scrollTo = function(x)
