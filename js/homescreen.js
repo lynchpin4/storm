@@ -15,6 +15,24 @@ var Launcher = {};
 	{
 		console.log('this is the truth');
 		this.background = new Launcher.Background();
+		this.update_clock();
+	}
+	
+	HomeScreen.prototype.update_clock = function()
+	{
+		var now = new Date(),
+			hr = now.getHours(),
+			min = now.getMinutes(),
+			ampm = 'PM';
+		
+		if (hr < 12) ampm = 'AM';
+		if (hr > 12) hr -= 12;
+		if (min < 10) min = "0"+min;
+		if (hr == 0) hr = '12';
+		
+		$('.clock').text(hr + ':' + min + ' ' + ampm);
+		
+		setTimeout(this.update_clock.bind(this), 1000);
 	}
 	
 	var ParallaxBackground;

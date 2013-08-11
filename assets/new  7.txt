@@ -1,0 +1,2 @@
+OS built on a system of panels, translucent panels slide in from the top and background colored slide in from right or left
+slide in defined by app
