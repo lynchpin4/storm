@@ -1,0 +1,43 @@
+.filemanager-close
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #f1f1f1;
+    font-size: 32px;
+}
+
+.filemanager-header
+{
+    font-size: 48px;
+    color: #efefef;
+    margin-top: 35px;
+    text-align: center;
+    text-shadow: 0px -1px 0px #303030;
+}
+
+.filemanager-content
+{
+    min-height: 100px;
+    background-color: rgba(25, 25, 25, 0.5);
+    border-radius: 5px;
+    margin: 25px;
+    padding: 18px;
+}
+
+.filemanager-content .iconrow
+{
+    margin: 20px;
+    position: relative;
+    display: inline-block;
+}
+/* todo: less theme engine integration for gutter size config */
+.filemanager-content .iconrow > *
+{
+    margin-right: 13px;
+    float: left;
+    width: 105px;
+    margin-bottom: 13px;
+}
+
+.filemanager-content .iconrow .app-label { max-width: 105px; }

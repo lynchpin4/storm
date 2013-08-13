@@ -1,3 +1,5 @@
+chemist.import('graphics.screenimageutil');
+
 var Launcher = {};
 var events = require('events');
 var wallpaper = wallpaper || {};
@@ -14,13 +16,41 @@ wallpaper.options = wallpaper.options || {};
 		this.options = {
 			hue_animation : false
 		};
+
+        this.screen_image_util = new chemist.graphics.ScreenImageUtil();
+        this.overlay_space = $('#overlay_space');
+
 		$.extend(this.options, options);
 		$.extend(this.options, wallpaper.options);
+
+        chemist.events.emit('homescreen:icons_ready');
 	}
 	
 	HomeScreen.prototype.initialize = function()
 	{
 	}
+
+    HomeScreen.prototype.openOverlay = function()
+    {
+        this.screen_image_util.getCapture(function(s){
+            $('.overlay-background-blur').html(
+                '<img src='+s+' width=100% height=100% />'
+            );
+
+            $('.bg-overlay').show();
+            this.emit('overlay_ready');
+        }.bind(this));
+    }
+
+    HomeScreen.prototype.closeOverlay = function()
+    {
+        $('.bg-overlay').hide();
+    }
+
+    HomeScreen.prototype.clearOverlay = function()
+    {
+        $('#overlay_space').html('');
+    }
 	
 	HomeScreen.prototype.applyOptions = function()
 	{

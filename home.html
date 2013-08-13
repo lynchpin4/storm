@@ -7,16 +7,23 @@
 		<!-- ugly link -->
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 		<link href='assets/icomoon/style.css' rel='stylesheet' type='text/css'>
+        <link href='applications/filemanager/fm.css' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="chemist/zepto.js"></script>
 		<script type="text/javascript" src="chemist/sdk/loader.js"></script>
 		<script type="text/javascript" src="js/homescreen.js"></script>
 		<script type="text/javascript">
+            window.storm = window.storm || {};
+            chemist.loader_paths = ['./applications/', './lib/'];
+            chemist.import('filemanager.fm');
+
 			chemist.events.on('chemist:bootstrap', function() {
 				console.log('app init');
 				var fs = require('fs');
 				
-				window.homescreen = new Launcher.HomeScreen();
-				homescreen.start();
+				storm.homescreen = new Launcher.HomeScreen();
+				window.homescreen = storm.homescreen;
+                homescreen.start();
+
 				
 				var wallpaper_path = 'assets/wallpaper/highres/',
 					files = fs.readdirSync(wallpaper_path);
@@ -73,7 +80,7 @@
 									<div class="app-icon"><img src="assets/gion/devices/media-flash.svg" /></div>
 									<div class="app-label"><span>SD Card</span></div>
 								</div>
-								<div class="app-button">
+								<div class="app-button link-open-apps">
 									<div class="app-icon"><img src="assets/gion/places/gnome-fs-directory.svg" /></div>
 									<div class="app-label"><span>Apps</span></div>
 								</div>
@@ -82,6 +89,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
+
+            <!-- apps that cover the main space of the homescreen go into overlay space -->
+            <div class="overlay-background-blur bg-overlay" style="display: none;"></div>
+            <div id="overlay_space" class="bg-overlay" style="display: none;">
+
+		    </div>
+        </div>
 	</body>
 </html>
