@@ -33,12 +33,16 @@ wallpaper.options = wallpaper.options || {};
     HomeScreen.prototype.openOverlay = function()
     {
         this.screen_image_util.getCapture(function(s){
-            $('.overlay-background-blur').html(
-                '<img src='+s+' width=100% height=100% />'
-            );
+            var img = new Image();
+            img.onload = function()
+            {
+                $('.overlay-background-blur').html('');
+                $('.overlay-background-blur').append(img);
+                $('.bg-overlay').show();
+                this.emit('overlay_ready');
+            }.bind(this);
+            img.src = s;
 
-            $('.bg-overlay').show();
-            this.emit('overlay_ready');
         }.bind(this));
     }
 
